@@ -1,0 +1,76 @@
+def openDict():
+    inFile = open("dictionary.txt", "r")
+    myList=[]
+    for line in inFile.readlines():
+        myList.append(line.strip())
+    return myList
+
+def checkWordLength(myList,wordLengthEntered):
+    wordsLeft = []
+    lengthEntered = wordLengthEntered
+    lengthEntered = eval(lengthEntered)
+    for x in range(0,len(myList)):
+        y= len(myList[x])
+        if y == lengthEntered:
+            wordsLeft.append(myList[x])
+    return wordsLeft
+            
+def getNewWords(wordsLeft, wordLengthEntered):
+    guess = guessLetterGui()
+    wordLengthEntered = eval(wordLengthEntered)
+    for x in range(0,len(wordsLeft)):
+        for y in range(indexOfMatch,wordLengthEntered):
+          indexOfMatch = wordsLeft[x].index()       
+        print("YEEET")
+
+
+#Prompts user to guess a letter
+
+def guessLetterGui():
+    user = raw_input("Guess a letter")
+    while user !="Q":
+        return user
+        
+#Prompt user for length of desired word
+
+def wordLengthGui():
+    user = raw_input("Enter a desired length for word or press Q to quit")
+    while user !="Q":
+        return user
+
+#Prompt the user for the number of guesses
+
+def numGuessGui():
+    user = raw_input("Enter a desired number of guesses or press Q to quit")
+    while user!= "Q":
+        return user
+
+#prompt for whether the user wants a running list or not
+
+def runListGui(wordsLeft):
+    userInput = raw_input("Enter Yes or No to display remaining words or q to quit")
+    if userInput=="Yes": print(wordsLeft[1])
+    if userInput =="q": exit
+      
+
+
+#print letters remaining
+
+def lettersRemaining(lettersList):
+    print(lettersList)
+
+#congratulates the player upon completion of the game
+
+def congratulationsGui():
+    print("Good Job you Won!")
+
+def control():
+    myList = openDict()
+    wordLengthEntered = wordLengthGui()
+    wordsLeft = checkWordLength(myList, wordLengthEntered)
+    numGuessGui()
+    runListGui()
+    getNewWords(wordsLeft,wordLengthEntered)
+
+def main():
+ control()
